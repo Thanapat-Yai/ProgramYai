@@ -36,6 +36,6 @@ def main():
     # อัปเดต LED
     print("Update LED:", pm25)
     print("End")
- 
+
 if __name__ == "__main__":
     main()
