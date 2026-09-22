@@ -2,6 +2,7 @@ from collections import deque
 
 customer_products = deque()
 
+
 def main():
     while True:
         print("\n--- Menu ---")
@@ -10,7 +11,9 @@ def main():
         print("2.view products")
         print("3.send products")
         print("4.cancel products")
-        print("5.exit")
+        print("5.sort products")
+        print("6.search products")
+        print("7.exit")
 
         choice = input("What do you want to do?: ").strip()
         if choice.isdigit() or choice == "" or not all(choice.isalpha() for choice in choice.replace(" ", "")):
@@ -74,6 +77,32 @@ def main():
                 print(f"-> Cancelled products!: {cancelled_product}")
             else:
                 print("-> No products to cancel!")
+
+        elif choice == "sort products":
+            if not customer_products:
+                print("-> Werehouse is empty!")
+            else:
+                sorted_list = sorted(customer_products)   # sort ชื่อสินค้า A-Z
+                customer_products.clear()
+                customer_products.extend(sorted_list)
+                print(f"-> Sorting products : {list(customer_products)}")
+
+# ค้นหาสินค้า (Searching) - ไล่หาทีละตัว (Linear Search)
+        elif choice == "search products":
+            if not customer_products:
+                print("-> Werehouse is empty!")
+            else:
+                keyword = input("Enter product name to search: ").strip()
+                found = False
+                for item in customer_products:   # Linear Search: ไล่เช็คทีละตัว
+                    if item.lower() == keyword.lower():
+                        found = True
+                        break
+ 
+                if found:
+                    print(f"-> Found '{keyword}' in werehouse!")
+                else:
+                    print(f"-> '{keyword}' not found in werehouse.")
 
 #ออกจากโปรแกรมคลังสินค้า
 
